@@ -23,7 +23,7 @@ import {TodoRepository} from '../repositories';
 export class TodoController {
   constructor(
     @repository(TodoRepository)
-    public todoRepository : TodoRepository,
+    public todoRepository: TodoRepository,
   ) {}
 
   @post('/todos')
@@ -52,9 +52,7 @@ export class TodoController {
     description: 'Todo model count',
     content: {'application/json': {schema: CountSchema}},
   })
-  async count(
-    @param.where(Todo) where?: Where<Todo>,
-  ): Promise<Count> {
+  async count(@param.where(Todo) where?: Where<Todo>): Promise<Count> {
     return this.todoRepository.count(where);
   }
 
@@ -70,10 +68,8 @@ export class TodoController {
       },
     },
   })
-  async find(
-    @param.filter(Todo) filter?: Filter<Todo>,
-  ): Promise<Todo[]> {
-    console.log('request received!')
+  async find(@param.filter(Todo) filter?: Filter<Todo>): Promise<Todo[]> {
+    console.log('request received!');
     return this.todoRepository.find(filter);
   }
 
@@ -107,7 +103,7 @@ export class TodoController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Todo, {exclude: 'where'}) filter?: FilterExcludingWhere<Todo>
+    @param.filter(Todo, {exclude: 'where'}) filter?: FilterExcludingWhere<Todo>,
   ): Promise<Todo> {
     return this.todoRepository.findById(id, filter);
   }

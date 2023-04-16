@@ -2,7 +2,7 @@ import {Entity, model, property, belongsTo} from '@loopback/repository';
 import {TodoList, TodoListWithRelations} from './todo-list.model';
 
 @model()
-export class Todo extends Entity {
+export class TodoListImage extends Entity {
   @property({
     type: 'number',
     id: true,
@@ -14,28 +14,18 @@ export class Todo extends Entity {
     type: 'string',
     required: true,
   })
-  title: string;
-
-  @property({
-    type: 'string',
-  })
-  desc?: string;
-
-  @property({
-    type: 'boolean',
-  })
-  isComplete?: boolean;
+  value: string;
 
   @belongsTo(() => TodoList)
   todoListId: number;
 
-  constructor(data?: Partial<Todo>) {
+  constructor(data?: Partial<TodoListImage>) {
     super(data);
   }
 }
 
-export interface TodoRelations {
+export interface TodoListImageRelations {
   todoList?: TodoListWithRelations;
 }
 
-export type TodoWithRelations = Todo & TodoRelations;
+export type TodoListImageWithRelations = TodoListImage & TodoListImageRelations;
